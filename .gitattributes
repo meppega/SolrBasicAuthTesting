@@ -1,5 +1,5 @@
 *.yml linguist-detectable=true
-*.yml linguist-language=DockerCompose/YAML
+*.yml linguist-language=DockerCompose
 
 *.json linguist-detectable=true
 *.json linguist-language=JSON
