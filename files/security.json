@@ -50,6 +50,11 @@
         "collection": "core2"
       },
       {
+        "name": "select",
+        "role": ["group2"],
+        "collection": "core2"
+      },
+      {
         "name": "collection-admin-read",
         "role": ["read_overview","admin"]
       },

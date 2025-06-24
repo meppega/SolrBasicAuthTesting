@@ -2,6 +2,7 @@ services:
 
   solr-init:
     image: solr:9.4.1
+    container_name: 2025solrInit
     user: root
     volumes:
       - solr_data:/var/solr
@@ -38,6 +39,22 @@ services:
     environment: # this shouldnt work with security file present (for testing)
       - SOLR_AUTH_TYPE=basic
       - SOLR_AUTHENTICATION_OPTS=-Dbasicauth=admin:admin123
+
+  solr-loader: #script that loads example data, not for use in production
+    image: solr:9.4.1
+    container_name: 2025solrLoaderPleaseDispose
+    profiles: ["loader"]
+    depends_on:
+      - solr
+    entrypoint:
+      - sh
+      - -c
+      - | #health check would be better than sleep
+        sleep 10 && \
+        curl -o /tmp/books.csv https://raw.githubusercontent.com/apache/solr/main/solr/example/exampledocs/books.csv && \
+        curl -u solr:SolrRocks -X POST -H "Content-Type: application/csv" \
+          --data-binary @/tmp/books.csv \
+          "http://solr:8983/solr/core2/update?commit=true"
 
   dozzle:
     image: amir20/dozzle:latest
