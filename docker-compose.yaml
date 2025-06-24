@@ -6,16 +6,21 @@ services:
     ports:
      - "8986:8983"
     volumes:
-      - data:/var/solr
+      - solr_data:/var/solr
     configs:
+    # this could cause issues with write permissions, its better to mount them somewhere else -> then copy them
       - source: solr-config
         target: /var/solr/data/solr.xml
       - source: solr-security
         target: /var/solr/data/security.json
     command:
-      - solr-precreate
-      - gettingstarted
-    environment:
+        - solr-precreate
+        - core0
+        - solr-precreate
+        - core1
+        - solr-precreate
+        - core2
+    environment: # this shouldnt work with security file present (for testing)
       - SOLR_AUTH_TYPE=basic
       - SOLR_AUTHENTICATION_OPTS=-Dbasicauth=admin:admin123
 
@@ -29,7 +34,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
-  data:
+  solr_data:
 
 configs:
   solr-config:
