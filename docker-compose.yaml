@@ -1,7 +1,5 @@
 services:
 
-
-
   solr-init:
     image: solr:9.4.1
     user: root
@@ -40,7 +38,6 @@ services:
     environment: # this shouldnt work with security file present (for testing)
       - SOLR_AUTH_TYPE=basic
       - SOLR_AUTHENTICATION_OPTS=-Dbasicauth=admin:admin123
-
 
   dozzle:
     image: amir20/dozzle:latest
