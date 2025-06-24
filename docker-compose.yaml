@@ -1,18 +1,35 @@
 services:
 
-  solr:
+
+
+  solr-init:
     image: solr:9.4.1
-    container_name: 2025solr
-    ports:
-     - "8986:8983"
+    user: root
     volumes:
       - solr_data:/var/solr
     configs:
-    # this could cause issues with write permissions, its better to mount them somewhere else -> then copy them
       - source: solr-config
-        target: /var/solr/data/solr.xml
+        target: /opt/solr-config/solr.xml
       - source: solr-security
-        target: /var/solr/data/security.json
+        target: /opt/solr-config/security.json
+    entrypoint:
+      - bash
+      - -c
+      - |
+        cp /opt/solr-config/solr.xml /var/solr/data/solr.xml
+        cp /opt/solr-config/security.json /var/solr/data/security.json
+        chown -R solr:solr /var/solr
+
+  solr:
+    image: solr:9.4.1
+    container_name: 2025solr
+    depends_on:
+      - solr-init
+    ports:
+     - "8986:8983"
+    user: solr
+    volumes:
+      - solr_data:/var/solr
     command:
         - solr-precreate
         - core0
