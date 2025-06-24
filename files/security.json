@@ -30,6 +30,11 @@
         "collection": "core1"
       },
       {
+        "name": "write",
+        "role": ["group1","admin"],
+        "collection": "core1"
+      },
+      {
         "name": "update",
         "role": ["group1","admin"],
         "collection": "core1"
