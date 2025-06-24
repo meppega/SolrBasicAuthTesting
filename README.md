@@ -8,13 +8,19 @@ Security settings can be found in `files/security.json`.
 > Basic auth is expected to be used alongside SSL and Zookeeper
 
 To run detached:
-``` docker compose up -d ```
+``` 
+docker compose up -d 
+```
 
 To load example data into core2:
-``` docker compose run --rm solr-loader ```
+``` 
+docker compose run --rm solr-loader 
+```
 
 To disable:
-``` docker compose down ```
+``` 
+docker compose down 
+```
 
 # Users
 
