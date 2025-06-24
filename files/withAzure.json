@@ -1,0 +1,38 @@
+{   
+    "website-with-guide" : 
+    "https://www.frakkingsweet.com/solr-and-azure-active-directory/",
+    "authentication-Template": {
+        "class": "solr.JWTAuthPlugin",
+        "blockUnknown": true,
+        "redirectUris": "###SOLRADMINURL###",
+        "principalClaim": "name",
+        "rolesClaim": "roles",
+        "adminUiScope": "###SCOPENAME###",
+        "issuers": [
+            {
+               "name": "AzureAD",
+                "wellKnownUrl": "https://login.microsoftonline.com/###TENANTID###/v2.0/.well-known/openid-configuration",
+                "clientId": "###CLIENTID###",
+                "aud": "###APPLICATIONURI###",
+                "iss": "https://sts.windows.net/###TENANTID###/"
+            }
+        ]
+    },
+    "authentication-Example": {
+        "class": "solr.JWTAuthPlugin",
+        "blockUnknown": true,
+        "redirectUris": "https://solr.example.com/solr/",
+        "principalClaim": "name",
+        "rolesClaim": "roles",
+        "adminUiScope": "api://621684a5-65c9-479a-8ec4-1026195f2fd2/admin",
+        "issuers": [
+            {
+                "name": "AzureAD",
+                "wellKnownUrl": "https://login.microsoftonline.com/8928c58d-5212-47b0-a549-8e92e51244bf/v2.0/.well-known/openid-configuration",
+                "clientId": "621684a5-65c9-479a-8ec4-1026195f2fd2",
+                "aud": "api://621684a5-65c9-479a-8ec4-1026195f2fd2",
+                "iss": "https://sts.windows.net/8928c58d-5212-47b0-a549-8e92e51244bf/"
+            }
+        ]
+    }
+}

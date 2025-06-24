@@ -1,0 +1,38 @@
+services:
+
+  solr:
+    image: solr:9.4.1
+    container_name: 2025solr
+    ports:
+     - "8986:8983"
+    volumes:
+      - data:/var/solr
+    configs:
+      - source: solr-config
+        target: /var/solr/data/solr.xml
+      - source: solr-security
+        target: /var/solr/data/security.json
+    command:
+      - solr-precreate
+      - gettingstarted
+    environment:
+      - SOLR_AUTH_TYPE=basic
+      - SOLR_AUTHENTICATION_OPTS=-Dbasicauth=admin:admin123
+
+
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: 2025dozzle
+    ports:
+      - "80:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  data:
+
+configs:
+  solr-config:
+    file: ./files/solr.xml
+  solr-security:
+    file: ./files/security.json
