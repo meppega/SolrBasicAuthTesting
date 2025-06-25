@@ -2,7 +2,7 @@
 - more examples of commands with curl
 
 # About
-This project explores basic authentication and authorization options in solr.
+This project explores basic authentication and authorization options in solr. \
 Security settings can be found in `files/security.json`.
 
 > Basic auth is expected to be used alongside SSL and Zookeeper
@@ -54,7 +54,7 @@ Select all data in "fantasy" genre:
  curl.exe --user solr:SolrRocks "http://localhost:8986/solr/core2/select?q=genre_s:fantasy"
 ```
 
-This should fail with code 403, user1 is unautorized:
+This should fail with code 403, user1 is unauthorized:
 ```
 curl.exe --user user1:user1 "http://localhost:8986/solr/core2/select?q=genre_s:fantasy"
 ```
