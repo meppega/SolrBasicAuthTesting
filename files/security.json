@@ -27,7 +27,8 @@
       {
         "name": "read",
         "role": ["group1","admin"],
-        "collection": "core1"
+        "collection": "core1",
+        "path": "/select"
       },
       {
         "name": "write",
@@ -42,15 +43,11 @@
       {
         "name": "read",
         "role": ["group2"],
-        "collection": "core2"
+        "collection": "core2",
+        "path": "/select"
       },
       {
         "name": "update",
-        "role": ["group2"],
-        "collection": "core2"
-      },
-      {
-        "name": "select",
         "role": ["group2"],
         "collection": "core2"
       },

@@ -38,7 +38,7 @@ docker compose down
 
 - core0 - admin only
 - core1 - *user1* has **read/write/update** permissions, permisions tied to *group1* settings
-- core2 - has some initial data, *user2* has **read/update/select** permissions, permisions tied to *group2* settings
+- core2 - has some initial data, *user2* has **read/update** permissions, permisions tied to *group2* settings
 
 # Curl examples
 
